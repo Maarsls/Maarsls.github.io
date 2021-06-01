@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="de">
+
+<head>
+    <title>HTL-Car</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <div class="dropdown mb-3">
+                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+                        Anleitung ausw&auml;hlen
+                    </button>
+                    <div class="dropdown-menu" id="selectTopic">
+                        <li class="dropdown-item" onclick="setTopic('HTL-Car')">HTL-Car</li>
+                        <li class="dropdown-item" onclick="setTopic('HTL-LED')">HTL-LED</li>
+                        <li class="dropdown-item" onclick="setTopic('Vuforia')">Vuforia</li>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm ml-auto mr-auto">
+                <h4>Beschreibung aktualisieren</h4>
+                <div class="dropdown mb-3">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                        Beschreibung ausw&auml;hlen
+                    </button>
+                    <div class="dropdown-menu" id="updateDescriptions">
+                    </div>
+                </div>
+                <input type="text" class="form-control" id="updateId" placeholder="Anleitungsschritt">
+                <textarea class="form-control mt-3" rows="5" id="updateDescriptionString"
+                    placeholder="Beschreibungstext"></textarea>
+                <input type="text" class="form-control mt-3" id="updateImgString" aria-describedby="imgHelp"
+                    placeholder="Bildquelle">
+                <small id="imgHelp" class="form-text text-muted">Wenn du mehrere Bilder angeben willst, dann trenne sie
+                    mit einem <kbd>,</kbd></small>
+                <div class="row">
+                    <div class="col-sm">
+                        <button type="submit" class="btn btn-danger mt-3" id="deleteDescription">Löschen</button>
+                    </div>
+                    <div class="col-sm ml-auto">
+                        <button type="submit" class="btn btn-primary mt-3" id="updateDescription">Aktualisieren</button>
+                    </div>
+                </div>
+                <h6 id="successfullyUpdated"></h6>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-sm ml-auto mr-auto">
+                <h4>Beschreibung hinzuf&uuml;gen</h4>
+                <input type="text" class="form-control" id="id" placeholder="Anleitungsschritt">
+                <textarea class="form-control mt-3" rows="5" id="descriptionString"
+                    placeholder="Beschreibungstext"></textarea>
+                <input type="text" class="form-control mt-3" id="imgString" aria-describedby="imgHelp"
+                    placeholder="Bildquelle">
+                <small id="imgHelp" class="form-text text-muted">Wenn du mehrere Bilder angeben willst, dann trenne sie
+                    mit einem <kbd>,</kbd></small>
+                <button type="submit" class="btn btn-primary mt-3" onclick="addDescription()">hinzuf&uuml;gen</button>
+                <h6 id="successfullyAdded"></h6>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm ml-auto mr-auto">
+                <h4>Beschreibungen sortieren</h4>
+                <ul class="list-group" id="sortable">
+                </ul>
+                <button type="submit" class="btn btn-primary mt-3" id="sortDescriptionButton">Aktualisieren</button>
+                <h6 id="successfullySorted"></h6>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="module">
+        import { Octokit } from "https://cdn.skypack.dev/@octokit/core";
+
+        const octokit = new Octokit({ auth: `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` });
+
+        function setTopic(){
+
+        }
+
+        async function sortDescription() {
+            var sortableList = document.getElementById("sortable");
+            console.log(sortableList.innerHTML);
+        }
+
+        async function createSortable() {
+            var sortableList = document.getElementById("sortable");
+            console.log(sortableList.innerHTML);
+            var current = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
+                owner: 'Maarsls',
+                repo: 'Maarsls.github.io',
+                path: 'htl-car.json',
+            });
+
+            var currentString = atob(current.data.content);
+
+            var umlaute = ["Ä", "ä", "Ö", "ö", "Ü", "ü", "ß"];
+            var ersetz = ["&Auml;", "&auml;", "&Ouml;", "&ouml;", "&Uuml;", "&uuml;", "&szlig;"];
+
+            for (var i = 0; i < umlaute.length; i++) {
+                currentString = currentString.replaceAll(ersetz[i], umlaute[i]);
+            }
+
+            currentString = JSON.parse(currentString);
+            var currentLength = Object.keys(currentString).length;
+
+            for (var i = 0; i < currentLength; i++) {
+                let currentDescriptionFromGit = currentString[i];
+
+                var newDropdown = document.createElement("li");
+                newDropdown.classList.add("list-group-item");
+                var text = document.createTextNode(currentDescriptionFromGit.id);
+                newDropdown.appendChild(text);
+                sortableList.appendChild(newDropdown);
+            }
+
+            $(function () {
+                $("#sortable").sortable();
+                $("#sortable").disableSelection();
+            });
+
+            var sortDescriptionButton = document.getElementById("sortDescriptionButton");
+            sortDescriptionButton.addEventListener('click', () => sortDescription(), false);
+
+        }
+        createSortable();
+
+        function updateInputFields(data) {
+            var updateId = document.getElementById("updateId");
+            var updateDescriptionString = document.getElementById("updateDescriptionString");
+            var updateImgString = document.getElementById("updateImgString");
+
+            updateId.value = data.id;
+            updateDescriptionString.value = data.descriptionString;
+            updateImgString.value = data.imgString;
+
+            var data = JSON.stringify(data);
+
+            var umlaute = ["Ä", "ä", "Ö", "ö", "Ü", "ü", "ß"];
+            var ersetz = ["&Auml;", "&auml;", "&Ouml;", "&ouml;", "&Uuml;", "&uuml;", "&szlig;"];
+
+            for (var i = 0; i < umlaute.length; i++) {
+                data = data.replaceAll(umlaute[i], ersetz[i]);
+            }
+            data = JSON.parse(data);
+
+            var submitButton = document.getElementById("updateDescription");
+            submitButton.addEventListener('click', () => updateDescription(data), false);
+
+            var deleteButton = document.getElementById("deleteDescription");
+            deleteButton.addEventListener('click', () => deleteDescription(data), false);
+
+        }
+
+        async function fillUpdateDropwown() {
+            var dropdown = document.getElementById("updateDescriptions");
+
+            var current = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
+                owner: 'Maarsls',
+                repo: 'Maarsls.github.io',
+                path: 'descriptions.json',
+            });
+
+            var currentString = atob(current.data.content);
+
+            var umlaute = ["Ä", "ä", "Ö", "ö", "Ü", "ü", "ß"];
+            var ersetz = ["&Auml;", "&auml;", "&Ouml;", "&ouml;", "&Uuml;", "&uuml;", "&szlig;"];
+
+            for (var i = 0; i < umlaute.length; i++) {
+                currentString = currentString.replaceAll(ersetz[i], umlaute[i]);
+            }
+
+            currentString = JSON.parse(currentString);
+            var currentLength = Object.keys(currentString).length;
+
+            for (var i = 0; i < currentLength; i++) {
+                let currentDescriptionFromGit = currentString[i];
+
+                var newDropdown = document.createElement("a");
+                newDropdown.classList.add("dropdown-item");
+                var text = document.createTextNode(currentDescriptionFromGit.id);
+                newDropdown.appendChild(text);
+                newDropdown.addEventListener('click', () => updateInputFields(currentDescriptionFromGit), false);
+
+                dropdown.appendChild(newDropdown);
+            }
+        }
+        fillUpdateDropwown();
+
+        async function updateDescription(data) {
+            var description = {};
+            description['id'] = document.getElementById("updateId").value;
+            description['descriptionString'] = document.getElementById("updateDescriptionString").value;
+            description['imgString'] = document.getElementById("updateImgString").value;
+            if (description['imgString'].includes(','))
+                description['type'] = "carousel";
+            else
+                description['type'] = "single";
+
+            var current = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
+                owner: 'Maarsls',
+                repo: 'Maarsls.github.io',
+                path: 'htl-car.json',
+            });
+
+            var currentString = atob(current.data.content);
+            //currentString = currentString.slice(0, -1);
+
+            currentString = JSON.parse(currentString);
+            var currentLength = Object.keys(currentString).length;
+
+
+            for (var i = 0; i < currentLength; i++) {
+                let currentDescription = currentString[i];
+
+                if (currentDescription.id == data.id) {
+                    currentDescription.id = description.id;
+                    currentDescription.descriptionString = description.descriptionString;
+                    currentDescription.imgString = description.imgString;
+                    currentDescription.type = description.type;
+                }
+            }
+
+            var newString = JSON.stringify(currentString);
+
+            var umlaute = ["Ä", "ä", "Ö", "ö", "Ü", "ü", "ß"];
+            var ersetz = ["&Auml;", "&auml;", "&Ouml;", "&ouml;", "&Uuml;", "&uuml;", "&szlig;"];
+
+            for (var i = 0; i < umlaute.length; i++) {
+                newString = newString.replaceAll(umlaute[i], ersetz[i]);
+            }
+
+            var base64Description = btoa(newString);
+
+            await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
+                owner: 'Maarsls',
+                repo: 'Maarsls.github.io',
+                path: 'htl-car.json',
+                message: 'newDescriptionAdded',
+                content: base64Description,
+                sha: current.data.sha
+            });
+
+            document.getElementById("successfullyUpdated").innerText = "Erfolgreich aktualisiert";
+
+            fillUpdateDropwown();
+        }
+
+        async function deleteDescription(data) {
+            var description = {};
+            description['id'] = document.getElementById("updateId").value;
+            description['descriptionString'] = document.getElementById("updateDescriptionString").value;
+            description['imgString'] = document.getElementById("updateImgString").value;
+            if (description['imgString'].includes(','))
+                description['type'] = "carousel";
+            else
+                description['type'] = "single";
+
+            var current = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
+                owner: 'Maarsls',
+                repo: 'Maarsls.github.io',
+                path: 'htl-car.json',
+            });
+
+            var currentString = atob(current.data.content);
+            //currentString = currentString.slice(0, -1);
+
+            currentString = JSON.parse(currentString);
+            var currentLength = Object.keys(currentString).length;
+
+
+            for (var i = 0; i < currentLength; i++) {
+                let currentDescription = currentString[i];
+
+                if (currentDescription.id == data.id) {
+                    delete currentString[i];
+                }
+            }
+
+
+
+            var newString = JSON.stringify(currentString);
+
+            newString = newString.replace(",null", "");
+
+
+            var umlaute = ["Ä", "ä", "Ö", "ö", "Ü", "ü", "ß"];
+            var ersetz = ["&Auml;", "&auml;", "&Ouml;", "&ouml;", "&Uuml;", "&uuml;", "&szlig;"];
+
+            for (var i = 0; i < umlaute.length; i++) {
+                newString = newString.replaceAll(umlaute[i], ersetz[i]);
+            }
+
+            var base64Description = btoa(newString);
+
+            await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
+                owner: 'Maarsls',
+                repo: 'Maarsls.github.io',
+                path: 'htl-car.json',
+                message: 'newDescriptionAdded',
+                content: base64Description,
+                sha: current.data.sha
+            });
+
+            document.getElementById("successfullyUpdated").innerHTML = "Erfolgreich gel&ouml;scht";
+
+
+        }
+
+
+        window.addDescription = async function () {
+            var description = {};
+            description['id'] = document.getElementById("id").value;
+            description['descriptionString'] = document.getElementById("descriptionString").value;
+            description['imgString'] = document.getElementById("imgString").value;
+            if (description['imgString'].includes(','))
+                description['type'] = "carousel";
+            else
+                description['type'] = "single";
+
+            var current = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
+                owner: 'Maarsls',
+                repo: 'Maarsls.github.io',
+                path: 'htl-car.json',
+            });
+
+            var currentString = atob(current.data.content);
+            currentString = currentString.slice(0, -1);;
+
+            var newString = currentString + "," + JSON.stringify(description) + "]";
+
+            var umlaute = ["Ä", "ä", "Ö", "ö", "Ü", "ü", "ß"];
+            var ersetz = ["&Auml;", "&auml;", "&Ouml;", "&ouml;", "&Uuml;", "&uuml;", "&szlig;"];
+
+            for (var i = 0; i < umlaute.length; i++) {
+                newString = newString.replaceAll(umlaute[i], ersetz[i]);
+            }
+
+            var base64Description = btoa(newString);
+
+            await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
+                owner: 'Maarsls',
+                repo: 'Maarsls.github.io',
+                path: 'htl-car.json',
+                message: 'newDescriptionAdded',
+                content: base64Description,
+                sha: current.data.sha
+            });
+
+            document.getElementById("successfullyAdded").innerHtml = "Erfolgreich hinzugef&uuml;gt";
+        }
+
+    </script>
+</body>
+
+</html>
