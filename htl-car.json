@@ -77,4 +77,4 @@
         "imgString": "",
         "type": "single"
     }
-]
+,{"id":"1. Installation von Vuforia View am Laptop/ PC:","descriptionString":"Vuforia Studio dient zur Einstellung von Studio-Erlebnissen f&uuml;r AR\nVuforia View ist eine App f&uuml;r iOS und Android zum Testen der Studio-Erlebnisse.\nWelche Voraussetzungen erf&uuml;llt sein m&uuml;ssen, damit Vuforia Studio am PC/ Laptop funktioniert:\n*Admin-Rechte f&uuml;r den Laptop m&uuml;ssen vorhanden sein!\n*Google Chrome muss installiert sein!\n*Google Chrome muss als Standartbrowser eingestellt sein, damit Vuforia Studio startet!\n*Vuforia Studio wird manuell konfiguriert\n*Freischaltung Port 3000 (Zugriff Vuforia Studio &uuml;ber Port 3000)\n*Port 8443 freischalten - Vuforia Studio\n\nInstallationsdatei (Windows & iOS):\nWindows: \nhttps://info.twx.htl.schule/sites/default/files/2019-09/MED-61199-CD-084_SP7_Vuforia-Studio-Windows-8-4-7.zip\niOS:\nhttps://drive.google.com/file/d/1i_Jq1Nxdn4CDLS6PE4e43EuqFMfjz8PJ/view?usp=sharing","imgString":"","type":"single"}]
