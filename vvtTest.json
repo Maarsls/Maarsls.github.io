@@ -1,0 +1,261 @@
+[
+  {
+    tripId: '2|#VN#1#ST#1625705515#PI#0#ZI#132492#TA#32#DA#80721#1S#476165502#1T#1222#LS#476165502#LT#1351#PU#81#RT#1#CA#t01#ZE#J#ZB#       J#PC#7#FR#476165502#FT#1222#TO#476165502#TT#1351#',
+    stop: {
+      type: 'stop',
+      id: '476133502',
+      name: 'Innsbruck Landessportcenter',
+      location: {
+        type: 'location',
+        id: '476133502',
+        latitude: 47.25738,
+        longitude: 11.412183
+      },
+      products: {
+        trains: false,
+        subway: false,
+        tram: false,
+        'city-bus': true,
+        'regional-bus': true,
+        'long-distance-bus': false,
+        'other-bus': false,
+        'aerial-lift': false,
+        ferry: false,
+        'on-call': false
+      },
+      station: {
+        type: 'station',
+        id: '476133500',
+        name: 'Innsbruck Landessportcenter',
+        location: {
+          type: 'location',
+          id: '476133500',
+          latitude: 47.257012,
+          longitude: 11.412273
+        },
+        products: {
+          trains: false,
+          subway: false,
+          tram: false,
+          'city-bus': true,
+          'regional-bus': true,
+          'long-distance-bus': false,
+          'other-bus': false,
+          'aerial-lift': false,
+          ferry: false,
+          'on-call': false
+        },
+        isMeta: true
+      }
+    },
+    when: '2021-07-08T12:40:00+02:00',
+    plannedWhen: '2021-07-08T12:39:00+02:00',
+    delay: 60,
+    platform: null,
+    plannedPlatform: null,
+    direction: null,
+    provenance: 'Igls Patscherkofel',
+    line: {
+      type: 'line',
+      id: 'vvt-1-j-p-j21-1',
+      fahrtNr: '2790',
+      name: 'Stadtbus J',
+      public: true,
+      adminCode: 't1900_',
+      mode: 'bus',
+      product: 'city-bus',
+      operator: {
+        type: 'operator',
+        id: 'innsbrucker-verkehrsbetriebe-und-stubaitalbahn-gmbh',
+        name: 'Innsbrucker Verkehrsbetriebe und Stubaitalbahn GmbH'
+      }
+    },
+    remarks: [
+      {
+        type: 'hint',
+        code: 'fb',
+        text: 'Fahrradmitnahme begrenzt möglich'
+      },
+      {
+        id: '126891',
+        type: 'warning',
+        summary: 'Tragen eines Mund-Nasen-Schutzes',
+        text: '<a href="https://routenplaner.verkehrsauskunft.at/him-upload/1625080040721_Fahrgastcharta_Juli2021.pdf" target="_blank" rel="noopener">Fahrgast-Charta - sicher und gesund mit den Öffis ans Ziel</a>',
+        icon: { type: 'HIM4', title: null },
+        priority: 100,
+        products: {
+          trains: true,
+          subway: true,
+          tram: true,
+          'city-bus': true,
+          'regional-bus': true,
+          'long-distance-bus': true,
+          'other-bus': true,
+          'aerial-lift': true,
+          ferry: true,
+          'on-call': true
+        },
+        company: 'KGÖVV',
+        categories: [ 4 ],
+        validFrom: '2021-01-25T00:00:00+01:00',
+        validUntil: '2021-12-11T23:59:00+01:00',
+        modified: '2021-06-30T21:08:47+02:00'
+      }
+    ]
+  },
+  {
+    tripId: '2|#VN#1#ST#1625705515#PI#0#ZI#132492#TA#27#DA#80721#1S#476165502#1T#1132#LS#476165502#LT#1301#PU#81#RT#1#CA#t01#ZE#J#ZB#       J#PC#7#FR#476165502#FT#1132#TO#476165502#TT#1301#',
+    stop: {
+      type: 'stop',
+      id: '476133501',
+      name: 'Innsbruck Landessportcenter',
+      location: {
+        type: 'location',
+        id: '476133501',
+        latitude: 47.25658,
+        longitude: 11.412408
+      },
+      products: {
+        trains: false,
+        subway: false,
+        tram: false,
+        'city-bus': true,
+        'regional-bus': true,
+        'long-distance-bus': false,
+        'other-bus': false,
+        'aerial-lift': false,
+        ferry: false,
+        'on-call': false
+      },
+      station: {
+        type: 'station',
+        id: '476133500',
+        name: …2m'Tragen eines Mund-Nasen-Schutzes',
+        text: '<a href="https://routenplaner.verkehrsauskunft.at/him-upload/1625080040721_Fahrgastcharta_Juli2021.pdf" target="_blank" rel="noopener">Fahrgast-Charta - sicher und gesund mit den Öffis ans Ziel</a>',
+        icon: { type: 'HIM4', title: null },
+        priority: 100,
+        products: {
+          trains: true,
+          subway: true,
+          tram: true,
+          'city-bus': true,
+          'regional-bus': true,
+          'long-distance-bus': true,
+          'other-bus': true,
+          'aerial-lift': true,
+          ferry: true,
+          'on-call': true
+        },
+        company: 'KGÖVV',
+        categories: [ 4 ],
+        validFrom: '2021-01-25T00:00:00+01:00',
+        validUntil: '2021-12-11T23:59:00+01:00',
+        modified: '2021-06-30T21:08:47+02:00'
+      }
+    ]
+  },
+  {
+    tripId: '2|#VN#1#ST#1625705515#PI#0#ZI#109072#TA#0#DA#80721#1S#470118725#1T#1240#LS#476424201#LT#1304#PU#81#RT#1#CA#t00#ZE#4134#ZB#    4134#PC#6#FR#470118725#FT#1240#TO#476424201#TT#1304#',
+    stop: {
+      type: 'stop',
+      id: '476133501',
+      name: 'Innsbruck Landessportcenter',
+      location: {
+        type: 'location',
+        id: '476133501',
+        latitude: 47.25658,
+        longitude: 11.412408
+      },
+      products: {
+        trains: false,
+        subway: false,
+        tram: false,
+        'city-bus': true,
+        'regional-bus': true,
+        'long-distance-bus': false,
+        'other-bus': false,
+        'aerial-lift': false,
+        ferry: false,
+        'on-call': false
+      },
+      station: {
+        type: 'station',
+        id: '476133500',
+        name: 'Innsbruck Landessportcenter',
+        location: {
+          type: 'location',
+          id: '476133500',
+          latitude: 47.257012,
+          longitude: 11.412273
+        },
+        products: {
+          trains: false,
+          subway: false,
+          tram: false,
+          'city-bus': true,
+          'regional-bus': true,
+          'long-distance-bus': false,
+          'other-bus': false,
+          'aerial-lift': false,
+          ferry: false,
+          'on-call': false
+        },
+        isMeta: true
+      }
+    },
+    when: '2021-07-08T12:47:00+02:00',
+    plannedWhen: '2021-07-08T12:47:00+02:00',
+    delay: 0,
+    platform: null,
+    plannedPlatform: null,
+    direction: null,
+    provenance: 'Innsbruck Hauptbahnhof',
+    line: {
+      type: 'line',
+      id: 'vvt-1-413-4-j21-5',
+      fahrtNr: '478',
+      name: 'Regionalbus 4134',
+      public: true,
+      adminCode: 't01IBK',
+      mode: 'bus',
+      product: 'regional-bus',
+      operator: {
+        type: 'operator',
+        id: 'osterreichische-postbus-ag',
+        name: 'Österreichische Postbus AG'
+      }
+    },
+    remarks: [
+      {
+        type: 'hint',
+        code: 'fb',
+        text: 'Fahrradmitnahme begrenzt möglich'
+      },
+      {
+        id: '126891',
+        type: 'warning',
+        summary: 'Tragen eines Mund-Nasen-Schutzes',
+        text: '<a href="https://routenplaner.verkehrsauskunft.at/him-upload/1625080040721_Fahrgastcharta_Juli2021.pdf" target="_blank" rel="noopener">Fahrgast-Charta - sicher und gesund mit den Öffis ans Ziel</a>',
+        icon: { type: 'HIM4', title: null },
+        priority: 100,
+        products: {
+          trains: true,
+          subway: true,
+          tram: true,
+          'city-bus': true,
+          'regional-bus': true,
+          'long-distance-bus': true,
+          'other-bus': true,
+          'aerial-lift': true,
+          ferry: true,
+          'on-call': true
+        },
+        company: 'KGÖVV',
+        categories: [ 4 ],
+        validFrom: '2021-01-25T00:00:00+01:00',
+        validUntil: '2021-12-11T23:59:00+01:00',
+        modified: '2021-06-30T21:08:47+02:00'
+      }
+    ]
+  }
+]
